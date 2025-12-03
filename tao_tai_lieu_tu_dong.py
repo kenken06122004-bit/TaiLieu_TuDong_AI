@@ -18,10 +18,11 @@ def tao_tai_lieu_tu_dong():
     # Tạo thư mục tai_lieu nếu chưa có
     os.makedirs("tai_lieu", exist_ok=True)
     # Ghi nội dung vào file tài liệu
-    with open("tai_lieu/tai_lieu_tu_dong.md", "w", encoding="utf-8") as file:
+    with open("tai_lieu/index.md", "w", encoding="utf-8") as file:
         file.write(noi_dung)
 
     print("ĐÃ TẠO TÀI LIỆU TỰ ĐỘNG TRONG THƯ MỤC 'tai_lieu/'")
 
 if __name__ == "__main__":
+
     tao_tai_lieu_tu_dong()
