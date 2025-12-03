@@ -1,0 +1,36 @@
+name: CI/CD Tự Động Tạo Và Triển Khai Tài Liệu AI
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Bước 1 - Tải mã nguồn
+        uses: actions/checkout@v3
+
+      - name: Bước 2 - Cài Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Bước 3 - Cài thư viện
+        run: pip install -r thu_vien_can_thiet.txt
+
+      - name: Bước 4 - Sinh tài liệu
+        run: python tao_tai_lieu_tu_dong.py
+
+      - name: Bước 5 - Kiểm tra tài liệu
+        run: python kiem_tra_tai_lieu.py
+
+      - name: Bước 6 - Triển khai tài liệu lên GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./tai_lieu
+
+      - name: Bước 7 - Gửi thông báo hoàn tất
+        run: echo "CI/CD đã hoàn tất và tài liệu mới nhất đã được cập nhật!"
