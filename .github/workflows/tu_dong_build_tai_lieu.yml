@@ -31,6 +31,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./tai_lieu
+          force_orphan: true # sẽ tạo mới nhánh gh-pages từ đầu, không dựa trên lịch sử git cũ → tránh lỗi “exit code 128”
 
       - name: Bước 7 - Gửi thông báo hoàn tất
         run: echo "CI/CD đã hoàn tất và tài liệu mới nhất đã được cập nhật!"
